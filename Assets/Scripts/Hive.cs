@@ -22,7 +22,6 @@ public class Hive : MonoBehaviour
     IEnumerator RunHive() {
         while (true) {
             float thisInterval = Random.Range(waveInterval - waveInterval * 0.2f, waveInterval + waveInterval * 0.2f);
-            Debug.Log("Wave interval: " + thisInterval);
             yield return new WaitForSeconds(thisInterval);
 
             int thisWave = (int)Random.Range(maxWaveSize - maxWaveSize * waveDeviation / 100, maxWaveSize + 1);

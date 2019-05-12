@@ -22,16 +22,18 @@ public class Enemy : MonoBehaviour
         foreach (RaycastHit hit in hits) {
             if (hit.transform.CompareTag("Player")) {
                 target = hit.transform;
-                //Debug.Log("Player found");
+                return;
             }
         }
-        agent.SetDestination(target.position);
+        target = null;
     }
 
     private void Update() {
+        if (target != null) {
         agent.SetDestination(target.position);
 
         CheckAttack();
+        }
     }
 
     private void CheckAttack() {
