@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static Transform p1instance;
 
     public float movementSpeed;
     public Weapon weapon;
 
+    private void Awake() {
+        p1instance = transform;
+    }
 
     private void Update() {
 
