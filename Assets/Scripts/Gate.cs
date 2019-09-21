@@ -9,5 +9,5 @@ public class Gate : MonoBehaviour
     private void Start() {
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
     }
-
+    
 }

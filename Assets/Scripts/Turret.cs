@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Turret : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class Turret : MonoBehaviour
 
     private Weapon weapon;
     LayerMask enemyLayer;
+    private NavMeshAgent agent;
 
     private void Start() {
         weapon = GetComponentInChildren<Weapon>();
+        agent = GetComponent<NavMeshAgent>();
         enemyLayer = LayerMask.GetMask("Enemy");
     }
 
@@ -29,7 +32,7 @@ public class Turret : MonoBehaviour
         }
     }
 
-    void UpdateRotation() {
+    private void UpdateRotation() {
         var lookPos = target.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
@@ -38,12 +41,12 @@ public class Turret : MonoBehaviour
     }
 
 
-    bool WithingRange(Transform target_) {
+    private bool WithingRange(Transform target_) {
         float distance = Vector3.Magnitude(transform.position - target_.position);
         return distance <= range;
     }
 
-    Transform SelectTarget() {
+    private Transform SelectTarget() {
         RaycastHit[] hits;
         hits = Physics.SphereCastAll(transform.position, range, transform.position, enemyLayer);
         foreach (RaycastHit hit in hits) {
@@ -52,6 +55,26 @@ public class Turret : MonoBehaviour
             }
         }
         return null;
+    }
+
+    ///////////
+    /// API ///
+    ///////////
+
+    public void Recall() {
+
+    }
+
+    public void Deploy (Vector3 position) {
+        agent.SetDestination(position);
+    }
+
+    public void Dismantle() {
+
+    }
+
+    public void MoveTo (Vector3 position) {
+
     }
 
 }

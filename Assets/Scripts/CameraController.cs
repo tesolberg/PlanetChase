@@ -5,10 +5,11 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Vector3 offset;
+    public Transform target;
 
     private void Update() {
-        if (PlayerController.p1instance != null) {
-            transform.position = PlayerController.p1instance.position + offset;
+        if (target != null) {
+            transform.position = target.position + offset;
         }
     }
 

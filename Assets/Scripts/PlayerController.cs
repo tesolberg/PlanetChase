@@ -10,11 +10,18 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     public Weapon weapon;
 
+    private bool turretControl = false;
+
     private void Awake() {
         p1instance = transform;
+        Camera.main.GetComponent<CameraController>().target = transform;
     }
 
+
     private void Update() {
+        if (Input.GetButtonDown("Y-button")) {
+            Debug.Log("Button pressed");
+        }
 
         UpdatePosition();
         UpdateRotation();
